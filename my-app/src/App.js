@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import Table from "./components/Table";
 import './index.css'
 import Input from "./components/Input";
-import {useTableSearch} from "./useTableSearch";
 
 function App() {
     const url = "https://oril-coins-test.herokuapp.com/list"
