@@ -1,17 +1,18 @@
-import React, {useMemo, useState, useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import Table from "./components/Table";
 import './index.css'
+import {logDOM} from "@testing-library/react";
 function App() {
     const url = "https://oril-coins-test.herokuapp.com/list"
     const [data, setData] = useState([])
     const [userLoaded, setUserLoaded] = useState(false);
+
     const fetchUser = async () => {
         try {
             let response = await fetch(url);
             let json = await response.json();
             return {success: true, data: json};
         } catch (error) {
-            // console.log(error);
             return {success: false};
         }
     }
