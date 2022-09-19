@@ -6,10 +6,11 @@
 .myTable {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    min-width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 20px;
 }
-
+table{
+}
 .myTable td, .myTable th {
     border: 1px solid #ddd;
     padding: 8px;

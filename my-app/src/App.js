@@ -1,7 +1,9 @@
-import React, { useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import Table from "./components/Table";
 import './index.css'
-import {logDOM} from "@testing-library/react";
+import Input from "./components/Input";
+import {useTableSearch} from "./useTableSearch";
+
 function App() {
     const url = "https://oril-coins-test.herokuapp.com/list"
     const [data, setData] = useState([])
@@ -27,9 +29,34 @@ function App() {
         })();
     }, []);
 
+    const [search, setSearch] = React.useState('');
+
+    const handleSearch = (event) => {
+        setSearch(event.target.value);
+    };
+
+    function getFilteredData() {
+        let array = [];
+        if (search !== "") {
+            data.forEach(elem => {
+                if (elem.name.toLowerCase().indexOf(search.toLowerCase()) !== -1) array.push(elem)
+            })
+            return array;
+        }
+        return data;
+    }
+
     return (
-        <div  className="App">
-            <Table values={data}/>
+        <div className="App">
+            <input
+                type="text"
+                onChange={e => {
+                    handleSearch(e);
+                }}
+                placeholder="Search"
+            >
+            </input>
+            <Table values={getFilteredData()}/>
         </div>
     );
 }
