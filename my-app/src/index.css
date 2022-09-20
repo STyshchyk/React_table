@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    max-width: 1170px;
+    background-color: teal;
+    margin: 0 auto;
+}
+input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    margin-top: 115px;
+    padding: 12px 20px 12px 40px;
+    max-width: 320px;
+    margin-left: 20px;
+    margin-bottom: 50px;
+}

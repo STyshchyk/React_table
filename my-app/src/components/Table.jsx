@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Table.module.css";
 
-const Table = (props) => {
-
-
+const Table =  (props) => {
     const [order, setOrder] = useState(false)
     const [order2, setOrder2] = useState(false)
+    const [userLoaded, setUserLoaded] = useState(false);
+    const [itemData, setItemData] = useState([])
     let dataArr = props.values;
 
     function getProperData(elem) {
         const date = new Date(elem)
         return `${date.getDay()}.${date.getHours()}.${date.getFullYear()}`;
     }
+
+
 
     function sortName() {
         if (!order) {
@@ -54,9 +56,8 @@ const Table = (props) => {
             </thead>
             <tbody>
             {dataArr.map(elem => {
-
-                return <tr key={elem.id}>
-                    <td>{elem.name}</td>
+                return <tr key={elem.id}  >
+                    <td  >{elem.name}</td>
                     <td>{getProperData(elem.date)}</td>
                     <td className={elem.isActive ? "" : classes.red}>{elem.isActive ? "Active" : "Disable"}</td>
                 </tr>

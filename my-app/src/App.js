@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import Table from "./components/Table";
 import './index.css'
-import Input from "./components/Input";
 
 function App() {
     const url = "https://oril-coins-test.herokuapp.com/list"
     const [data, setData] = useState([])
+    const [itemData, setItemData] = useState([])
     const [userLoaded, setUserLoaded] = useState(false);
+    const [search, setSearch] = React.useState('');
+    const [refValue, setRef] = useState()
 
-    const fetchUser = async () => {
+    const fetchUser = async (url) => {
         try {
             let response = await fetch(url);
             let json = await response.json();
@@ -20,15 +22,13 @@ function App() {
     useEffect(() => {
         (async () => {
             setUserLoaded(false);
-            let res = await fetchUser();
+            let res = await fetchUser(url);
             if (res.success) {
                 setData(res.data);
                 setUserLoaded(true);
             }
         })();
     }, []);
-
-    const [search, setSearch] = React.useState('');
 
     const handleSearch = (event) => {
         setSearch(event.target.value);
@@ -54,10 +54,11 @@ function App() {
                 }}
                 placeholder="Search"
             >
+
             </input>
             <Table values={getFilteredData()}/>
         </div>
     );
 }
 
-export default App;
+export default App
